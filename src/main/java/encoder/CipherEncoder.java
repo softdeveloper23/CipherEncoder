@@ -4,21 +4,16 @@ import java.util.Scanner;
 
 public class CipherEncoder {
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
-
-        System.out.println("Input string:");
         Scanner scanner = new Scanner(System.in);
-        String original = scanner.nextLine();
-
-        for (int i = 0; i < original.length(); i++) {
-            sb.append(original.charAt(i));
-            if (i != original.length() - 1) {
-                sb.append(' ');
-            }
-        }
-
-        String result = sb.toString();
-        System.out.println(result);
+        String input = scanner.nextLine();
+        char[] charArray = input.toCharArray();
+        convertToBinary(charArray);
         scanner.close();
+    }
+
+    private static void convertToBinary(char[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
     }
 }
