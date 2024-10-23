@@ -5,20 +5,21 @@ import java.util.Scanner;
 public class CipherEncoder {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input string:");
+        System.out.println("Input encoded string:");
         String input = scanner.nextLine();
-        char[] charArray = input.toCharArray();
         System.out.println("The result:");
-        convertToBinary(charArray);
+        decoder(input);
         scanner.close();
     }
 
-    private static void convertToBinary(char[] arr) {
-        String result;
-        for (int i = 0; i < arr.length; i++) {
-            result = Integer.toBinaryString(arr[i]);
-            String formattedBinaryString = String.format("%7s", result).replace(' ', '0');
-            System.out.println(arr[i] + " = " + formattedBinaryString);
+    private static void decoder(String input) {
+        for (int i = 0; i < input.length(); i++) {
+            Character c = input.charAt(i);
+            if (c.equals('0')) {
+                System.out.print("1");
+            } else if (c.equals(' ')) {
+                System.out.print("2");
+            }
         }
     }
 }
