@@ -11,7 +11,7 @@ public class CipherEncoder {
         decoder(input);
         scanner.close();
     }
-    // Method to decipher code
+
     private static void decoder(String input) {
         for (int i = 0; i < input.length(); i++) {
             Character c = input.charAt(i);
