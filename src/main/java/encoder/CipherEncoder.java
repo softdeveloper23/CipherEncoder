@@ -7,28 +7,34 @@ public class CipherEncoder {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input encoded string:");
         String input = scanner.nextLine();
-        char[] charArray = input.toCharArray();
         System.out.println("The result:");
-        decoder(charArray);
+        decoder(input);
         scanner.close();
     }
 
-    private static void decoder(char[] arr) {
-        int block1 = 1;
-        int block2 = 0;
-        int count = 0;
+    private static void decoder(String input) {
+        String[] tokens = input.split(" ");
+        StringBuilder output = new StringBuilder();
 
-        for (int i = 0; i < arr.length - 2; i++) {
-            int j = i + 1;
-            int k = i + 2;
+        for (int i = 0; i < tokens.length; i += 2) {
+            String prefix = tokens[i];
+            String zeroSequence = tokens[i + 1];
+            char bit;
 
-            if (arr[i] == '0' && arr[j] == ' ') {
-                while (k < arr.length && arr[k] == '0') {
-                    System.out.print(block1);
-                    count++;
-                    k = k + 1;
-                }
+            if (prefix.equals("0")) {
+                bit = '1';
+            } else if (prefix.equals("00")) {
+                bit = '0';
+            } else {
+                System.err.println("Invalid prefix: " + prefix);
+                return;
+            }
+
+            int count = zeroSequence.length();
+            for (int j = 0; j < count; j++) {
+                output.append(bit);
             }
         }
+        System.out.println(output.toString());
     }
 }
