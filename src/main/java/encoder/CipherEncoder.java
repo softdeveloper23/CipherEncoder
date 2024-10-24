@@ -8,11 +8,12 @@ public class CipherEncoder {
         System.out.println("Input encoded string:");
         String input = scanner.nextLine();
         System.out.println("The result:");
-        decoder(input);
+        String binaryString = decoder(input);
+        convertBinaryToText(binaryString);
         scanner.close();
     }
 
-    private static void decoder(String input) {
+    private static String decoder(String input) {
         String[] tokens = input.split(" ");
         StringBuilder output = new StringBuilder();
 
@@ -35,6 +36,11 @@ public class CipherEncoder {
                 output.append(bit);
             }
         }
-        System.out.println(output.toString());
+        String binaryString = output.toString();
+        return binaryString;
+    }
+
+    private static void convertBinaryToText(String binaryString) {
+        // method body
     }
 }
