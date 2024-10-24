@@ -27,8 +27,7 @@ public class CipherEncoder {
             } else if (prefix.equals("00")) {
                 bit = '0';
             } else {
-                System.err.println("Invalid prefix: " + prefix);
-                return;
+                return "Invalid prefix: " + prefix;
             }
 
             int count = zeroSequence.length();
@@ -41,6 +40,14 @@ public class CipherEncoder {
     }
 
     private static void convertBinaryToText(String binaryString) {
-        // method body
+        int blockSize = 7;
+        int length = binaryString.length();
+        StringBuilder textOutput = new StringBuilder();
+
+        for (int i = 0; i < length; i += blockSize) {
+            int endIndex = Math.min(i + blockSize, length);
+            String block = binaryString.substring(i, endIndex);
+            // ...rest of the loop...
+        }
     }
 }
