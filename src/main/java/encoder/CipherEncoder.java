@@ -5,11 +5,13 @@ import java.util.Scanner;
 public class CipherEncoder {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input encoded string:");
-        String input = scanner.nextLine();
-        System.out.println("The result:");
-        String binaryString = decoder(input);
-        convertBinaryToText(binaryString);
+        String operation;
+        do {
+            System.out.println("Please input operation (encode/decode/exit):");
+            operation = scanner.nextLine();
+            userInterface(scanner, operation);
+        } while (!operation.equals("exit"));
+
         scanner.close();
     }
 
@@ -47,7 +49,34 @@ public class CipherEncoder {
         for (int i = 0; i < length; i += blockSize) {
             int endIndex = Math.min(i + blockSize, length);
             String block = binaryString.substring(i, endIndex);
-            // ...rest of the loop...
+
+            if (block.length() < blockSize) {
+                block = String.format("%7s", block).replace(' ', '0');
+            }
+
+            int charCode = Integer.parseInt(block, 2);
+            char character = (char) charCode;
+            textOutput.append(character);
+        }
+        System.out.println(textOutput.toString());
+    }
+
+    private static void userInterface(Scanner scanner, String operation) {
+        switch (operation) {
+            case "encode":
+                System.out.println("Encoded string:");
+                break;
+            case "decode":
+                System.out.println("Input encoded string:");
+                String input = scanner.nextLine();
+                String binaryString = decoder(input);
+                System.out.println("Decoded string:");
+                convertBinaryToText(binaryString);
+                break;
+            case "exit":
+                break;
+            default:
+                System.out.println("There is no '" + operation + "' operation");
         }
     }
 }
